@@ -30,7 +30,6 @@ const Login = ({ show, setShow, setShowRegister }) => {
       e.preventDefault();
 
       const data = await API.post("/login", userLogin);
-      // console.log("data isi nya apa", data);
 
       const alert = <Alert variant="success">Login berhasil!</Alert>;
 
@@ -43,12 +42,15 @@ const Login = ({ show, setShow, setShowRegister }) => {
         type: "LOGIN_SUCCESS",
         payload,
       });
+
       setuserLogin({
         email: "",
         password: "",
       });
+
       setmessage(null);
-      navigate("/");
+      data.data.data.role == 'admin' && navigate('/home-admin');
+
     } catch (error) {
       console.log(error);
       const alert = <Alert variant="danger">Email / password salah!</Alert>;

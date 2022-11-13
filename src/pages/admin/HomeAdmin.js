@@ -16,9 +16,9 @@ const HomeAdmin = () => {
   return (
     <Container>
         <h1 className="text-light mb-5">Incoming Transaction</h1>
-        <Table striped bordered hover variant="dark">
+        <Table striped bordered hover variant="dark" className="text-center">
       <thead>
-        <tr>
+        <tr className="text-color">
           <th>No</th>
           <th>User</th>
           <th>Bukti Transfer</th>
@@ -35,7 +35,7 @@ const HomeAdmin = () => {
           <td>bca.jpg</td>
           <td>{item?.film?.title}</td>
           <td>4811 1111 1111 1114</td>
-          <td>{item?.status}</td>
+          <td className="text-success fs-5 fw-bold">{item?.status}</td>
         </tr>
       ))}
       </tbody>

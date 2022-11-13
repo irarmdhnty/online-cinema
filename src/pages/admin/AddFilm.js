@@ -75,7 +75,7 @@ const AddFilm = () => {
       const alert = <Alert variant="success">Success Add film!</Alert>;
       setTimeout(() => {
         setMessage(alert);
-        navigate("/");
+        navigate("/film");
       }, 1000);
 
       // console.log("data film", data);
@@ -144,8 +144,11 @@ const AddFilm = () => {
           className="text-light bg-dark border border-none"
           onChange={(e) => setSelected(e.target.value)}
         >
+          <option>Category</option>
           {categories?.map((item) => (
-            <option value={item?.id} className="border border-none">{item?.name} </option>
+            <option value={item?.id} className="border border-none">
+              {item?.name}{" "}
+            </option>
           ))}
         </Form.Select>
         <input

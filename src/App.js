@@ -3,6 +3,8 @@ import {
   Routes,
   Route,
   useNavigate,
+  Outlet,
+  Navigate,
 } from "react-router-dom";
 import AddFilm from "./pages/admin/AddFilm";
 // import Navbars from "./components/Navbars";
@@ -78,17 +80,37 @@ function App() {
   useEffect(() => {
     checkUser();
   }, []);
+
+  const PrivateRoute = () => {
+    return state.isLogin ? <Outlet /> : <Navigate to="/" />;
+  };
+
+  const AdminRoute = () => {
+    return state.user.role === "admin" ? <Outlet /> : <Navigate to="/" />;
+  };
+
   return (
     <Routes>
       {/* <Navbars /> */}
-      <Route path="/" element={<Home />} />
-      <Route path="/detail/:id" element={<Details />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/list-film" element={<ListFilm />} />
-      <Route path="/home-admin" element={<HomeAdmin />} />
-      <Route path="/add-film" element={<AddFilm />} />
-      <Route path="/add-category" element={<AddCategory />} />
-      <Route path="/film" element={<Film />} />
+      {isLoading ? (
+        <></>
+      ) : (
+        <>
+          <Route path="/" element={<Home />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<AdminRoute />}>
+              <Route path="/home-admin" element={<HomeAdmin />} />
+              <Route path="/add-film" element={<AddFilm />} />
+              <Route path="/add-category" element={<AddCategory />} />
+              <Route path="/film" element={<Film />} />
+            </Route>
+            <Route exact path='/' element={<Home />} />
+            <Route path="/detail/:id" element={<Details />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/list-film" element={<ListFilm />} />
+          </Route>
+        </>
+      )}
     </Routes>
   );
 }
