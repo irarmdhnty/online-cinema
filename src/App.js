@@ -19,6 +19,7 @@ import { UserContext } from "./Usercontext/Usercontex";
 import { API, setAuthToken } from "./config/api";
 import Film from "./pages/admin/Film";
 import DetailList from "./pages/DetailList";
+import UpdateFilm from "./pages/admin/UpdateFilm";
 
 function App() {
   let navigate = useNavigate();
@@ -102,10 +103,11 @@ function App() {
             <Route path="/" element={<AdminRoute />}>
               <Route path="/home-admin" element={<HomeAdmin />} />
               <Route path="/add-film" element={<AddFilm />} />
+              <Route path="/update-film/:id" element={<UpdateFilm />} />
               <Route path="/add-category" element={<AddCategory />} />
               <Route path="/film" element={<Film />} />
             </Route>
-            <Route exact path='/' element={<Home />} />
+            <Route exact path="/" element={<Home />} />
             <Route path="/detail/:id" element={<Details />} />
             <Route path="/transaction/:id" element={<DetailList />} />
             <Route path="/profile" element={<Profile />} />

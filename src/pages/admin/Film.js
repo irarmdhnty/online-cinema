@@ -24,7 +24,12 @@ const Film = () => {
           <h1 className="text-light ">Film</h1>
         </Col>
         <Col md={6} className="text-end">
-          <Button className="mb-5 btn-color fw-bold fs-5" onClick={() => navigate("/add-film") }>Add Film</Button>
+          <Button
+            className="mb-5 btn-color fw-bold fs-5"
+            onClick={() => navigate("/add-film")}
+          >
+            Add Film
+          </Button>
         </Col>
       </Row>
       <Table striped bordered hover variant="dark">
@@ -61,6 +66,13 @@ const Film = () => {
                 </Button>
               </td>
               <td>
+                <Button
+                  onClick={() => navigate(`/update-film/${item.id}`)}
+                  className="fw-bold me-3"
+                  variant="outline-info"
+                >
+                  Update
+                </Button>
                 <Button
                   onClick={async () => {
                     const response = await API.delete(
