@@ -78,7 +78,7 @@ const AddFilm = () => {
         navigate("/film");
       }, 1000);
 
-      // console.log("data film", data);
+      
     } catch (error) {
       console.log(error);
     }

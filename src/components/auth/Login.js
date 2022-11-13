@@ -37,7 +37,7 @@ const Login = ({ show, setShow, setShowRegister }) => {
       setShow(false);
 
       let payload = data.data.data;
-      // console.log("isi payload", payload.token);
+    
       dispatch({
         type: "LOGIN_SUCCESS",
         payload,

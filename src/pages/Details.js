@@ -67,17 +67,15 @@ const Details = () => {
       window.snap.pay(token, {
         onSuccess: function (result) {
           /* You may add your own implementation here */
-          // console.log(result);
-          // history.push("/profile");
+          
         },
         onPending: function (result) {
           /* You may add your own implementation here */
-          // console.log(result);
-          // history.push("/profile");
+          
         },
         onError: function (result) {
           /* You may add your own implementation here */
-          // console.log(result);
+         
         },
         onClose: function () {
           /* You may add your own implementation here */

@@ -12,8 +12,7 @@ const UpdateFilm = () => {
   const [selected, setSelected] = useState(-1);
   const [categories, setCategories] = useState([]);
 
-  const params = useParams();
-  console.log(params);
+  const params = useParams().id;
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -38,22 +37,18 @@ const UpdateFilm = () => {
     }
   };
 
-  //   let { data: updateFilm } = useQuery("updateFilmChache", async () => {
-  //     const response = await API.get(`/film/${params}`);
-  //     return response;
-  //   });
-
   let { data: updateFilm, refetch: refetchFilm } = useQuery(
-    "filmasde",
+    "updateFilmCache",
     async () => {
       const response = await API.get(`/film/${params}`);
-
-      console.log("ini 51",response);
-
       return response.data.data;
     }
   );
 
+  let { data: getCat, refetch } = useQuery("getCatCache", async () => {
+    const response = await API.get(`/categorys`);
+    return response.data.data;
+  });
 
   useEffect(() => {
     if (updateFilm) {
@@ -93,9 +88,9 @@ const UpdateFilm = () => {
     }
   });
 
-  React.useEffect (() => {
-    refetchFilm( )
-  })
+  React.useEffect(() => {
+    refetchFilm();
+  });
 
   return (
     <Container>
@@ -119,8 +114,8 @@ const UpdateFilm = () => {
                 <img
                   src={preview}
                   style={{
-                    maxWidth: "150px",
-                    maxHeight: "150px",
+                    maxWidth: "100px",
+                    maxHeight: "100px",
                     objectFit: "cover",
                   }}
                   alt={preview}
@@ -134,7 +129,6 @@ const UpdateFilm = () => {
               <Form.Control
                 name="image"
                 type="file"
-                value={form?.image}
                 placeholder="Attach Image"
                 hidden
                 onChange={handleChange}
@@ -155,7 +149,7 @@ const UpdateFilm = () => {
           onChange={(e) => setSelected(e.target.value)}
         >
           <option>Category</option>
-          {categories?.map((item) => (
+          {getCat?.map((item) => (
             <option value={item?.id} className="border border-none">
               {item?.name}{" "}
             </option>

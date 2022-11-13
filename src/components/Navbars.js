@@ -35,9 +35,9 @@ const Navbars = () => {
     const response = await API.get(`/user/${state.user.id}`);
 
     setUser(response.data.data.data);
-    // console.log("isi response", response);
+    
   };
-  // console.log(user, "isi user");
+  
 
   useEffect(() => {
     if (state.user) {

@@ -14,15 +14,8 @@ const Profile = () => {
 
   const getUserProfile = async () => {
     const response = await API.get(`/user/${state.user.id}`);
-    console.log(response.data.data);
     setUser(response.data.data);
   };
-
-  // let { data: trx, refetch } = useQuery("trxCache", async () => {
-  //   const response = await API.get(`/transaction/user/${state.user.id}`);
-  //   console.log("data transaksi", response.data.data);
-  //   return response.data.data;
-  // });
 
   useEffect(() => {
     getUserProfile();

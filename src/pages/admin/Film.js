@@ -32,15 +32,16 @@ const Film = () => {
           </Button>
         </Col>
       </Row>
-      <Table striped bordered hover variant="dark">
+      <Table striped bordered hover variant="dark" className="text-center">
         <thead>
-          <tr>
+          <tr className="text-color">
             <th>NO</th>
             <th>ID</th>
             <th>Films</th>
             <th>Category</th>
             <th>Image</th>
             <th>Price</th>
+            <th>Description</th>
             <th>Detail</th>
             <th>Action</th>
           </tr>
@@ -56,6 +57,7 @@ const Film = () => {
                 <Image className="w-25" src={item?.image} />
               </td>
               <td>{convertRupiah.convert(item?.price)}</td>
+              <td>{item?.description}</td>
               <td>
                 <Button
                   onClick={() => navigate(`/detail/${item?.id}`)}
