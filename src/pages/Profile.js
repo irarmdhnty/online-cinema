@@ -14,18 +14,18 @@ const Profile = () => {
 
   const getUserProfile = async () => {
     const response = await API.get(`/user/${state.user.id}`);
+    console.log(response.data.data);
     setUser(response.data.data);
   };
 
-  let { data: trx, refetch } = useQuery("trxCache", async () => {
-    const response = await API.get(`/transaction/user/${state.user.id}`);
-    console.log("data transaksi", response.data.data);
-    return response.data.data;
-  });
+  // let { data: trx, refetch } = useQuery("trxCache", async () => {
+  //   const response = await API.get(`/transaction/user/${state.user.id}`);
+  //   console.log("data transaksi", response.data.data);
+  //   return response.data.data;
+  // });
 
   useEffect(() => {
     getUserProfile();
-    refetch();
   }, [state]);
 
   return (
@@ -56,19 +56,19 @@ const Profile = () => {
         <Col className="col-12 col-md-6">
           <h2 className="mb-5 text-light">History Transaction</h2>
           <div style={{ maxHeight: "250px", overflow: "scroll" }}>
-            {trx?.map((trans, index) => (
-              <Card className="shadow d-flex mb-3 btn-color border border-md card-light" key={index}>
+            {user?.transaction?.map((item) => (
+              <Card className="shadow d-flex mb-3 btn-color border border-md card-light">
                 <Card.Body>
                   <Row>
                     <Col>
                       <Card.Title className="text-light fw-bold">
-                        {trans?.film?.title}
+                        {item?.film?.title}
                       </Card.Title>
                       <Card.Text className="mb-2 text-light">
-                        <span className="fw-bold">Saturday,</span> {trans?.tanggal_order}
+                        {new Date(item?.tanggal_order).toLocaleDateString('id-ID', {day: "numeric" ,month: "long", year: "numeric"})}
                       </Card.Text>
                       <Card.Text className="text-color fw-bold">
-                        Total: {convertRupiah.convert(trans?.price)}
+                        Total: {convertRupiah.convert(item?.film?.price)}
                       </Card.Text>
                       <Col className="ms-5" style={{ textAlign: "end" }}>
                         <Button className="btn-finish fw-bold fs-5 w-50">

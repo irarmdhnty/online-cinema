@@ -18,6 +18,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./Usercontext/Usercontex";
 import { API, setAuthToken } from "./config/api";
 import Film from "./pages/admin/Film";
+import DetailList from "./pages/DetailList";
 
 function App() {
   let navigate = useNavigate();
@@ -106,6 +107,7 @@ function App() {
             </Route>
             <Route exact path='/' element={<Home />} />
             <Route path="/detail/:id" element={<Details />} />
+            <Route path="/transaction/:id" element={<DetailList />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/list-film" element={<ListFilm />} />
           </Route>
