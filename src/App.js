@@ -34,16 +34,6 @@ function App() {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-
-    if (state.isLogin == false && !isLoading) {
-      navigate("/");
-    } else {
-      if (state.user.status == "admin") {
-        navigate("/complain-admin");
-      } else if (state.user.status == "customer") {
-        navigate("/");
-      }
-    }
   }, [state]);
 
   // Create function for check user token here ...

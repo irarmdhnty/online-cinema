@@ -50,7 +50,7 @@ const Profile = () => {
           <h2 className="mb-5 text-light">History Transaction</h2>
           <div style={{ maxHeight: "250px", overflow: "scroll" }}>
             {user?.transaction?.map((item) => (
-              <Card className="shadow d-flex mb-3 btn-color border border-md card-light">
+              <Card className="shadow d-flex mb-3 btn-color border border-md">
                 <Card.Body>
                   <Row>
                     <Col>
@@ -58,7 +58,10 @@ const Profile = () => {
                         {item?.film?.title}
                       </Card.Title>
                       <Card.Text className="mb-2 text-light">
-                        {new Date(item?.tanggal_order).toLocaleDateString('id-ID', {day: "numeric" ,month: "long", year: "numeric"})}
+                        {new Date(item?.tanggal_order).toLocaleDateString(
+                          "id-ID",
+                          { day: "numeric", month: "long", year: "numeric" }
+                        )}
                       </Card.Text>
                       <Card.Text className="text-color fw-bold">
                         Total: {convertRupiah.convert(item?.film?.price)}

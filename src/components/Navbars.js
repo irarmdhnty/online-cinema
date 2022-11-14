@@ -11,15 +11,17 @@ import {
 import "../style/style.css";
 import { useNavigate } from "react-router-dom";
 import { API } from "../config/api";
+import { UserContext } from "../Usercontext/Usercontex";
+
+import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 import logo from "../assets/logo.svg";
 import profile from "../assets/profile.svg";
 import film from "../assets/film.svg";
 import logout from "../assets/logout.svg";
 import userIcon from "../assets/user.svg";
-import Login from "./auth/Login";
-import Register from "./auth/Register";
-import { UserContext } from "../Usercontext/Usercontex";
+import iconAdmin from "../assets/icon-admin.jpeg"
 
 const Navbars = () => {
   const navigate = useNavigate();
@@ -131,7 +133,7 @@ const Navbars = () => {
                 <Dropdown className="px-5">
                   <Dropdown.Toggle variant="btn-color" id="dropdown-basic">
                     <img
-                      src={profile}
+                      src={iconAdmin}
                       width={40}
                       height={40}
                       className="rounded-circle"
