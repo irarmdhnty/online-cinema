@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Button,
-  Col,
-  Container, Image, Row
-} from "react-bootstrap";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import convertRupiah from "rupiah-format";
 
@@ -11,12 +7,19 @@ import { useMutation, useQuery } from "react-query";
 import { API } from "../config/api";
 
 const Details = () => {
-  let navigate = useNavigate();
   const params = useParams().id;
 
   let { data: films } = useQuery("filmCache", async () => {
     const response = await API.get(`/film/${params}`);
     return response.data.data;
+  });
+
+  let { data: trx } = useQuery("trxCache", async () => {
+    const response = await API.get(`/transactions`);
+    const filter = response.data.data.filter(
+      (p) => (p.film_id == params) & (p.status == "success")
+    );
+    return filter;
   });
 
   // Create config Snap payment page with useEffect here ...
@@ -67,15 +70,12 @@ const Details = () => {
       window.snap.pay(token, {
         onSuccess: function (result) {
           /* You may add your own implementation here */
-          
         },
         onPending: function (result) {
           /* You may add your own implementation here */
-          
         },
         onError: function (result) {
           /* You may add your own implementation here */
-         
         },
         onClose: function () {
           /* You may add your own implementation here */
@@ -101,24 +101,44 @@ const Details = () => {
               <h1 className="text-light">{films?.title}</h1>
             </Col>
             <Col className="text-end">
+            {trx.length === 0 ? (
               <Button
                 className="btn-color fw-bold"
                 onClick={() => handleBuy.mutate()}
               >
                 Buy Now
               </Button>
+            ) : null}
             </Col>
           </Row>
           <div className="embed-responsive embed-responsive-16by9">
-            <iframe
-              width="600"
-              height="315"
-              src={films?.filmUrl}
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            {trx.length == 0 ? (
+
+            <div onClick={() => alert("test")}>
+              <iframe
+                width="600"
+                height="315"
+                src={films?.filmUrl}
+                title="YouTube video player"
+                frameborder="0"
+                style={{ pointerEvents: "none" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            ) : (
+              <div>
+              <iframe
+                width="600"
+                height="315"
+                src={films?.filmUrl}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+              </div>
+            )}
           </div>
           <h5 className="text-light">{films?.category?.name}</h5>
           <h5 className="text-color">{convertRupiah.convert(films?.price)}</h5>
