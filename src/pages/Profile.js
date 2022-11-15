@@ -68,7 +68,7 @@ const Profile = () => {
                       </Card.Text>
                       <Col className="ms-5" style={{ textAlign: "end" }}>
                         <Button className="btn-finish fw-bold fs-5 w-50">
-                          Finished
+                          {item?.status}
                         </Button>
                       </Col>
                     </Col>

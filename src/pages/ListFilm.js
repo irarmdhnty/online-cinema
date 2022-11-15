@@ -28,6 +28,7 @@ const ListFilm = () => {
       <div class="row row-cols-1 row-cols-md-3 g-5">
         {user?.transaction?.map((item) => (
           <div class="col" className="w-25">
+          {item.status === "success" && (
             <div class="card mb-5 border border-none">
               <Image
                 src={item?.film?.image}
@@ -36,6 +37,7 @@ const ListFilm = () => {
                 className="w-100"
               />
             </div>
+          )}
           </div>
         ))}
       </div>
