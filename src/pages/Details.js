@@ -110,7 +110,7 @@ const Details = () => {
             </Col>
           </Row>
           <div className="embed-responsive embed-responsive-16by9">
-            {trx === 0 ? (
+            {trx.length === 0 ? (
               <div onClick={() => alert("please make a purchase first")}>
                 <iframe
                   width="600"
