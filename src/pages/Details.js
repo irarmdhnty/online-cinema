@@ -7,6 +7,7 @@ import { useMutation, useQuery } from "react-query";
 import { API } from "../config/api";
 
 const Details = () => {
+  const navigate = useNavigate();
   const params = useParams().id;
 
   let { data: films } = useQuery("filmCache", async () => {
@@ -70,6 +71,7 @@ const Details = () => {
       window.snap.pay(token, {
         onSuccess: function (result) {
           /* You may add your own implementation here */
+          navigate("/profile")
         },
         onPending: function (result) {
           /* You may add your own implementation here */

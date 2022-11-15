@@ -52,7 +52,7 @@ function App() {
 
       // Get user data
       let payload = response.data.data;
-   
+
       // Get token from local storage
       payload.token = localStorage.token;
 
