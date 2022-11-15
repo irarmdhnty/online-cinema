@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Image, Row, Table } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import convertRupiah from "rupiah-format";
+import Delete from "../../components/Delete";
 import { API } from "../../config/api";
 
 const Film = () => {
   const navigate = useNavigate();
+  const [idDelete, setIdDelete] = useState();
+  const [showDelete, setShowDelete] = useState(false);
 
   let { data: list, refetch } = useQuery("listCache", async () => {
     const response = await API.get("/films");
@@ -76,11 +79,9 @@ const Film = () => {
                   Update
                 </Button>
                 <Button
-                  onClick={async () => {
-                    const response = await API.delete(
-                      `/film/delete/${item.id}`
-                    );
-                    refetch();
+                  onClick={() => {
+                    setIdDelete(item.id);
+                    setShowDelete(true);
                   }}
                   variant="outline-danger"
                   className="fw-bold"
@@ -92,6 +93,11 @@ const Film = () => {
           ))}
         </tbody>
       </Table>
+      <Delete
+        showDelete={showDelete}
+        setShowDelete={setShowDelete}
+        idDelete={idDelete}
+      />
     </Container>
   );
 };

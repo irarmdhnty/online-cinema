@@ -101,17 +101,19 @@ const Details = () => {
               <h1 className="text-light">{films?.title}</h1>
             </Col>
             <Col className="text-end">
-              <Button
-                className="btn-color fw-bold"
-                onClick={() => handleBuy.mutate()}
-              >
-                Buy Now
-              </Button>
+              {trx?.length === 0 ? (
+                <Button
+                  className="btn-color fw-bold"
+                  onClick={() => handleBuy.mutate()}
+                >
+                  Buy Now
+                </Button>
+              ) : null}
             </Col>
           </Row>
           <div className="embed-responsive embed-responsive-16by9">
-            {trx.length === 0 ? (
-              <div onClick={() => alert("please make a purchase first")}>
+            {trx?.length === 0 ? (
+              <div onClick={() => alert("test")}>
                 <iframe
                   width="600"
                   height="315"
