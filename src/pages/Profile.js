@@ -50,31 +50,35 @@ const Profile = () => {
           <h2 className="mb-5 text-light">History Transaction</h2>
           <div style={{ maxHeight: "250px", overflow: "scroll" }}>
             {user?.transaction?.map((item) => (
-              <Card className="shadow d-flex mb-3 btn-color border border-md">
-                <Card.Body>
-                  <Row>
-                    <Col>
-                      <Card.Title className="text-light fw-bold">
-                        {item?.film?.title}
-                      </Card.Title>
-                      <Card.Text className="mb-2 text-light">
-                        {new Date(item?.tanggal_order).toLocaleDateString(
-                          "id-ID",
-                          { day: "numeric", month: "long", year: "numeric" }
-                        )}
-                      </Card.Text>
-                      <Card.Text className="text-color fw-bold">
-                        Total: {convertRupiah.convert(item?.film?.price)}
-                      </Card.Text>
-                      <Col className="ms-5" style={{ textAlign: "end" }}>
-                        <Button className="btn-finish fw-bold fs-5 w-50">
-                          {item?.status}
-                        </Button>
-                      </Col>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
+              <div>
+                {item.status === "success" && (
+                  <Card className="shadow d-flex mb-3 btn-color border border-md">
+                    <Card.Body>
+                      <Row>
+                        <Col>
+                          <Card.Title className="text-light fw-bold">
+                            {item?.film?.title}
+                          </Card.Title>
+                          <Card.Text className="mb-2 text-light">
+                            {new Date(item?.tanggal_order).toLocaleDateString(
+                              "id-ID",
+                              { day: "numeric", month: "long", year: "numeric" }
+                            )}
+                          </Card.Text>
+                          <Card.Text className="text-color fw-bold">
+                            Total: {convertRupiah.convert(item?.film?.price)}
+                          </Card.Text>
+                          <Col className="ms-5" style={{ textAlign: "end" }}>
+                            <Button className="btn-finish fw-bold fs-5 w-50">
+                              {item?.status}
+                            </Button>
+                          </Col>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                )}
+              </div>
             ))}
           </div>
         </Col>
