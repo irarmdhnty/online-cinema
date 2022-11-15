@@ -110,18 +110,32 @@ const Details = () => {
             </Col>
           </Row>
           <div className="embed-responsive embed-responsive-16by9">
-            <div onClick={() => alert("test")}>
-              <iframe
-                width="600"
-                height="315"
-                src={films?.filmUrl}
-                title="YouTube video player"
-                frameborder="0"
-                style={{ pointerEvents: "none" }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            {trx === 0 ? (
+              <div onClick={() => alert("please make a purchase first")}>
+                <iframe
+                  width="600"
+                  height="315"
+                  src={films?.filmUrl}
+                  title="YouTube video player"
+                  frameborder="0"
+                  style={{ pointerEvents: "none" }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ) : (
+              <div>
+                <iframe
+                  width="600"
+                  height="315"
+                  src={films?.filmUrl}
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
           </div>
           <h5 className="text-light">{films?.category?.name}</h5>
           <h5 className="text-color">{convertRupiah.convert(films?.price)}</h5>
