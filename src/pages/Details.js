@@ -101,19 +101,15 @@ const Details = () => {
               <h1 className="text-light">{films?.title}</h1>
             </Col>
             <Col className="text-end">
-            {trx.length === 0 ? (
               <Button
                 className="btn-color fw-bold"
                 onClick={() => handleBuy.mutate()}
               >
                 Buy Now
               </Button>
-            ) : null}
             </Col>
           </Row>
           <div className="embed-responsive embed-responsive-16by9">
-           
-
             <div onClick={() => alert("test")}>
               <iframe
                 width="600"
@@ -126,7 +122,6 @@ const Details = () => {
                 allowFullScreen
               ></iframe>
             </div>
-           
           </div>
           <h5 className="text-light">{films?.category?.name}</h5>
           <h5 className="text-color">{convertRupiah.convert(films?.price)}</h5>
