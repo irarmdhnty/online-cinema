@@ -115,7 +115,7 @@ const Details = () => {
           </Row>
           <div className="embed-responsive embed-responsive-16by9">
             {trx?.length === 0 ? (
-              <div onClick={() => alert("test")}>
+              <div onClick={() => alert("please make payment first")}>
                 <iframe
                   width="600"
                   height="315"
